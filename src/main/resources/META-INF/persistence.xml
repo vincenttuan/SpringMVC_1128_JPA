@@ -16,4 +16,5 @@
       <property name="javax.persistence.jdbc.password" value="app"/>
     </properties>
   </persistence-unit>
+  
 </persistence>
