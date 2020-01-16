@@ -2,7 +2,9 @@ package com.web.mvc.entity.one2one;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,10 @@ public class Husband {
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wife_id")
+    //可加入 SQL 外鍵約束 SQL
+    //ALTER TABLE APP.HUSBAND ADD CONSTRAINT FK_WIFE FOREIGN KEY (WIFE_ID) REFERENCES APP.WIFE(ID);        
+    //可移除 SQL 外鍵約束 SQL
+    //ALTER TABLE APP.HUSBAND DROP CONSTRAINT FK_WIFE;        
     Wife wife;
     
     public Long getId() {
