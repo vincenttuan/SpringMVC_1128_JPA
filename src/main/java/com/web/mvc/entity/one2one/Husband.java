@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,6 +22,7 @@ public class Husband {
     private String name;
     
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wife_id")
     Wife wife;
     
     public Long getId() {

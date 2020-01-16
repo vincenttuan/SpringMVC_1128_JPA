@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 public class Test2 {
     static EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
     public static void main(String[] args) {
-        add("John", "Mary");
+        add("Tom", "Jane");
         
     }
     
