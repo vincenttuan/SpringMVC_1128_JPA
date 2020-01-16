@@ -1,10 +1,12 @@
 package com.web.mvc.entity.one2one;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +19,10 @@ public class Husband {
     
     @Column(name = "name", nullable = false, length = 50)
     private String name;
-
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    Wife wife;
+    
     public Long getId() {
         return id;
     }
@@ -33,5 +38,15 @@ public class Husband {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Wife getWife() {
+        return wife;
+    }
+
+    public void setWife(Wife wife) {
+        this.wife = wife;
+    }
+    
+    
     
 }
