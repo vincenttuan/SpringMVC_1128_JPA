@@ -1,5 +1,6 @@
 package com.web.mvc.entity.one2one;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
@@ -36,6 +37,7 @@ public class Husband {
 //                @JoinColumn(name = "wife_mame", referencedColumnName = "name")
 //            }
 //    )
+    @JsonIgnoreProperties(value = { "husband" })        
     Wife wife;
     
     public Long getId() {

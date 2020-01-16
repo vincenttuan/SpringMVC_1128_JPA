@@ -10,8 +10,8 @@ public class Test2 {
     public static void main(String[] args) throws Exception {
 //        add("John", "Mary");
 //        add("Tom", "Jane");
-//        queryHusband();
-//        queryWife();
+        queryHusband();
+        queryWife();
 //        get(Husband.class, 1051L);
 //        get(Wife.class, 1301L);
 //        update(1251L, "Vincent", "Anita");
