@@ -8,14 +8,13 @@ import javax.persistence.EntityManager;
 public class Test2 {
     static EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
     public static void main(String[] args) throws Exception {
-        //add("John", "Mary");
+//        add("John", "Mary");
 //        queryHusband();
 //        queryWife();
 //        get(Husband.class, 1051L);
 //        get(Wife.class, 1201L);
-        
-        update(1051L, "Vincent", "Anita");
-        
+//        update(1051L, "Vincent", "Anita");
+        delete(1151L);
     }
     
     public static void add(String name1, String name2) {
@@ -62,6 +61,15 @@ public class Test2 {
         em.persist(husband);
         em.getTransaction().commit();
         System.out.println("Update OK !");
+    }
+    
+    public static void delete(Long id) {
+        Husband husband = em.find(Husband.class, id);
+        if(husband == null) return;
+        em.getTransaction().begin();
+        em.remove(husband);
+        em.getTransaction().commit();
+        System.out.println("Delete OK !");
     }
     
     public static void print(Object object) throws Exception {
