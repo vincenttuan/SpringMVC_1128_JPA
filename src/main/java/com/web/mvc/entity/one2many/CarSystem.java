@@ -32,7 +32,10 @@ public class CarSystem {
                 break;
             case "2":
                 System.out.println("請輸入 Car 名稱: ");
-                addCar(sc.next());
+                String newCarName = sc.next();
+                System.out.println("請輸入 Price 價格: ");
+                int newCost = sc.nextInt();
+                addCar(newCarName, newCost);
                 break;
             case "3":
                 queryDrivers();
@@ -85,9 +88,14 @@ public class CarSystem {
         System.out.println("Driver 新增成功 !");
     }
     
-    public static void addCar(String name) {
+    public static void addCar(String name, int cost) {
+        Price price = new Price();
+        price.setCost(cost);
+        
         Car car = new Car();
         car.setName(name);
+        car.setPrice(price);
+        
         em.getTransaction().begin();
         em.persist(car);
         em.getTransaction().commit();
