@@ -18,6 +18,7 @@ public class CarSystem {
         System.out.println("3. 查詢 Drivers");
         System.out.println("4. 查詢 Cars");
         System.out.println("5. 單查 Driver");
+        System.out.println("6. 單查 Car");
         System.out.println("0. 離開 Exit");
         System.out.println("-----------------");
         Scanner sc = new Scanner(System.in);
@@ -42,6 +43,13 @@ public class CarSystem {
                 Object driver = getDriver(sc.next());
                 if (driver != null) {
                     System.out.println(obj.writeValueAsString(driver));
+                }
+                break;
+            case "6":
+                System.out.println("請輸入要查詢的 Car 名稱: ");
+                Object car = getCar(sc.next());
+                if (car != null) {
+                    System.out.println(obj.writeValueAsString(car));
                 }
                 break;
             case "0":    
@@ -88,8 +96,18 @@ public class CarSystem {
             System.out.println("查無此人");
             return null;
         }
-        Driver driver = (Driver)q.getSingleResult();
-        return driver;
+        return q.getSingleResult();
+    }
+    
+    public static Object getCar(String name) {
+        Query q = em.createQuery("Select c From Car c Where c.name =:name");
+        q.setParameter("name", name);
+        int size = q.getResultList().size();
+        if(size == 0) {
+            System.out.println("查無此車");
+            return null;
+        }
+        return q.getSingleResult();
     }
     
     public static void main(String[] args) throws Exception {
