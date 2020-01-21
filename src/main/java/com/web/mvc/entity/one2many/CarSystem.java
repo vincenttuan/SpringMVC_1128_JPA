@@ -17,11 +17,12 @@ public class CarSystem {
         System.out.println("請輸入選項: ");
         switch(sc.next()) {
             case "1":
-                System.out.println("請輸入名稱: ");
+                System.out.println("請輸入 Driver 名稱: ");
                 addDriver(sc.next());
                 break;
             case "2":
-                
+                System.out.println("請輸入 Car 名稱: ");
+                addCar(sc.next());
                 break;
             case "0":    
                 return;
@@ -36,6 +37,15 @@ public class CarSystem {
         em.persist(driver);
         em.getTransaction().commit();
         System.out.println("Driver 新增成功 !");
+    }
+    
+    public static void addCar(String name) {
+        Car car = new Car();
+        car.setName(name);
+        em.getTransaction().begin();
+        em.persist(car);
+        em.getTransaction().commit();
+        System.out.println("Car 新增成功 !");
     }
     
     public static void main(String[] args) {
