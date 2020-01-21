@@ -21,6 +21,7 @@ public class CarSystem {
         System.out.println("6. 單查 Car");
         System.out.println("7. 買車");
         System.out.println("8. 賣車(過戶)");
+        System.out.println("9. 資產");
         System.out.println("0. 離開 Exit");
         System.out.println("-----------------");
         Scanner sc = new Scanner(System.in);
@@ -72,7 +73,10 @@ public class CarSystem {
                 System.out.println("請輸入買車人(Driver): ");
                 String buyerName = sc.next();
                 sellCar(sellerName, sellerCarName, buyerName);
-                break;    
+                break; 
+            case "9":
+                asset();
+                break;
             case "0":    
                 return;
         }
@@ -182,6 +186,14 @@ public class CarSystem {
         System.out.println("賣車(過戶)成功 !");
     }
     
+    public static void asset() {
+        em.clear();
+        List<Driver> drivers = em.createQuery("Select d From Driver d").getResultList();
+        drivers.stream().forEach(d -> {
+            int sum = d.getCars().stream().mapToInt(c -> c.getPrice().getCost()).sum();
+            System.out.printf("%s $%,d\n", d.getName(), sum);
+        });
+    }
     
     
     public static void main(String[] args) throws Exception {
