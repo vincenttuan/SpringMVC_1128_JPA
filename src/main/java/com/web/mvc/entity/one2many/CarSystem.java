@@ -19,6 +19,7 @@ public class CarSystem {
         System.out.println("4. 查詢 Cars");
         System.out.println("5. 單查 Driver");
         System.out.println("6. 單查 Car");
+        System.out.println("7. 買車");
         System.out.println("0. 離開 Exit");
         System.out.println("-----------------");
         Scanner sc = new Scanner(System.in);
@@ -52,6 +53,13 @@ public class CarSystem {
                     System.out.println(obj.writeValueAsString(car));
                 }
                 break;
+            case "7":
+                System.out.println("請輸入賣車人(Driver): ");
+                String driverName = sc.next();
+                System.out.println("請輸入車名(Car): ");
+                String carName = sc.next();
+                buyCar(driverName, carName);
+                break;    
             case "0":    
                 return;
         }
@@ -108,6 +116,26 @@ public class CarSystem {
             return null;
         }
         return q.getSingleResult();
+    }
+    
+    public static void buyCar(String driverName, String carName) {
+        Object o1 = getDriver(driverName);
+        if(o1 == null) {
+            System.out.println("查無此人");
+            return;
+        }
+        Object o2 = getCar(carName);
+        if(o2 == null) {
+            System.out.println("查無此車");
+            return;
+        }
+        Driver driver = (Driver)o1;
+        Car car = (Car)o2;
+        car.setDriver(driver);
+        em.getTransaction().begin();
+        em.persist(car);
+        em.getTransaction().commit();
+        System.out.println("買車成功 !");
     }
     
     public static void main(String[] args) throws Exception {
