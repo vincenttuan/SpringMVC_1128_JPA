@@ -20,6 +20,7 @@ public class CarSystem {
         System.out.println("5. 單查 Driver");
         System.out.println("6. 單查 Car");
         System.out.println("7. 買車");
+        System.out.println("8. 賣車(過戶)");
         System.out.println("0. 離開 Exit");
         System.out.println("-----------------");
         Scanner sc = new Scanner(System.in);
@@ -54,11 +55,20 @@ public class CarSystem {
                 }
                 break;
             case "7":
-                System.out.println("請輸入賣車人(Driver): ");
+                System.out.println("請輸入買車人(Driver): ");
                 String driverName = sc.next();
                 System.out.println("請輸入車名(Car): ");
                 String carName = sc.next();
                 buyCar(driverName, carName);
+                break;    
+            case "8":
+                System.out.println("請輸入賣車人(Driver): ");
+                String sellerName = sc.next();
+                System.out.println("請輸入車名(Car): ");
+                String sellerCarName = sc.next();
+                System.out.println("請輸入買車人(Driver): ");
+                String buyerName = sc.next();
+                sellCar(sellerName, sellerCarName, buyerName);
                 break;    
             case "0":    
                 return;
@@ -137,6 +147,34 @@ public class CarSystem {
         em.getTransaction().commit();
         System.out.println("買車成功 !");
     }
+    
+    public static void sellCar(String sellerName, String carName, String buyerName) {
+        Object o1 = getDriver(sellerName);
+        if(o1 == null) {
+            System.out.println("查無此賣家");
+            return;
+        }
+        Object o2 = getCar(carName);
+        if(o2 == null) {
+            System.out.println("查無此車");
+            return;
+        }
+        Object o3 = getDriver(buyerName);
+        if(o3 == null) {
+            System.out.println("查無此買家");
+            return;
+        }
+        Car car = (Car)o2;
+        Driver buyer = (Driver)o3;
+        car.setDriver(buyer);
+        
+        em.getTransaction().begin();
+        em.persist(car);
+        em.getTransaction().commit();
+        System.out.println("賣車(過戶)成功 !");
+    }
+    
+    
     
     public static void main(String[] args) throws Exception {
         menu();
