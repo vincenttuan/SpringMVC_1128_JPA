@@ -1,10 +1,16 @@
 package com.web.mvc.entity.many2many;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Fund { 
@@ -14,6 +20,15 @@ public class Fund {
     
     @Column
     private String name;
+    
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "Fund_Stock",
+            joinColumns = @JoinColumn(name = "Fund_id"),
+            inverseJoinColumns = @JoinColumn(name = "Stock_id")
+    )
+    @JsonIgnoreProperties("funds")
+    private Set<Stock> stocks;
     
     public Fund() {
     }
@@ -36,6 +51,14 @@ public class Fund {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(Set<Stock> stocks) {
+        this.stocks = stocks;
     }
     
 }
