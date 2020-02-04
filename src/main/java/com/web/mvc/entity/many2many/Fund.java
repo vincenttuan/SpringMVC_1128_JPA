@@ -31,6 +31,7 @@ public class Fund {
     private Set<Stock> stocks;
     
     public Fund() {
+        
     }
 
     public Fund(String name) {
