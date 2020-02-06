@@ -21,6 +21,9 @@ public class Classify implements Serializable {
     @Column
     private String name;
     
+    @Column
+    private Boolean transaction;
+    
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy="classify")
     @JsonIgnoreProperties("classify")
     private Set<TStock> tStocks;
@@ -56,9 +59,18 @@ public class Classify implements Serializable {
         this.tStocks = tStocks;
     }
 
+    public Boolean getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Boolean transaction) {
+        this.transaction = transaction;
+    }
+
     @Override
     public String toString() {
-        return "Classify{" + "id=" + id + ", name=" + name + '}';
+        return "Classify{" + "id=" + id + ", name=" + name + ", transaction=" + transaction + '}';
     }
+    
     
 }
