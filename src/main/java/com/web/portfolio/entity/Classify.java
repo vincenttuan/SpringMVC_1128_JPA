@@ -31,8 +31,9 @@ public class Classify implements Serializable {
     public Classify() {
     }
 
-    public Classify(String name) {
+    public Classify(String name, Boolean transaction) {
         this.name = name;
+        this.transaction = transaction;
     }
     
     public Long getId() {
