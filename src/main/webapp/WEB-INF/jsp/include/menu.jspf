@@ -5,7 +5,7 @@
         <a class="pure-menu-heading" href="/SpringMVC/portfolio/index.jsp">Portfolio</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="/SpringMVC/portfolio/invest.jsp" class="pure-menu-link">Investor</a></li>
+            <li class="pure-menu-item"><a href="/SpringMVC/portfolio/investor.jsp" class="pure-menu-link">Investor</a></li>
             <li class="pure-menu-item"><a href="/SpringMVC/portfolio/classify.jsp" class="pure-menu-link">Classify</a></li>
             <li class="pure-menu-item"><a href="/SpringMVC/mvc/portfolio/logout" class="pure-menu-link">Logout</a></li>
         </ul>
