@@ -43,7 +43,7 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-        <!-- 整合 JPA -->
+    <!-- 整合 JPA -->
     <context:annotation-config />
     <tx:annotation-driven />
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
