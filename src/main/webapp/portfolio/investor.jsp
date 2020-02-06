@@ -31,6 +31,7 @@
                         cache: false,
                         processData: false,
                         success: function (resposeJsonObject) {
+                            //alert(JSON.stringify(resposeJsonObject));
                             table_list();
                         }
                     });
@@ -106,15 +107,17 @@
                             <form id="myform" class="pure-form">
                                 <fieldset>
                                     <legend> <h2 class="content-subhead">資料維護</h2></legend>
-
+                                    
                                     <input id="id" vslue="0"   name="id" placeholder="ID" readonly="true"/><p />
                                     <input id="username" name="username" placeholder="username"/><p />
                                     <input id="password" name="password" placeholder="password"/><p />
                                     <input id="email" name="email" placeholder="email"/><p />
                                     <input id="balance" name="balance" placeholder="balance" type="number"/><p />
+                                    
                                     <button id="add" type="button" class="pure-button pure-button-primary">新增</button>
                                     <button id="upt" type="button" class="pure-button pure-button-primary">修改</button>
                                     <button id="del" type="button" class="pure-button pure-button-primary">刪除</button>
+                                    
                                 </fieldset>
                             </form>
                         </div>
