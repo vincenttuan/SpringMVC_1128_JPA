@@ -108,7 +108,7 @@ public class Investor implements Serializable {
 
     @Override
     public String toString() {
-        return "Investor{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", balance=" + balance + '}';
+        return "Investor{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", balance=" + balance + ", watchs=" + watchs + '}';
     }
 
     
