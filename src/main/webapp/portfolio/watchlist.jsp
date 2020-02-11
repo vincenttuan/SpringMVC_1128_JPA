@@ -6,11 +6,11 @@
         <%@include file="/WEB-INF/jsp/include/head.jspf"  %>
         <script>
             var watch_id = ${sessionScope.watch_id};
-            
+
             $(document).ready(function () {
                 watchList();
             });
-            
+
             function watchList() {
                 $.get("/SpringMVC/mvc/portfolio/watch/" + watch_id, function (data, status) {
                     console.log(JSON.stringify(data));
@@ -40,11 +40,11 @@
                             <th>分類</th><th>名稱</th><th>代號</th>
                             <th>作收</th><th>報價</th><th>漲跌</th>
                             <th>漲跌幅%</th><th>交易量</th><th>交易時間</th>
-                            <th>刪除</th>
+                            <th>買進</th>
                         </tr>
                     </thead>
                     <tbody>
-                            
+
                     </tbody>
                 </table>
             </div>
