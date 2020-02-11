@@ -28,8 +28,8 @@
                 });
 
                 $("#myTable1").on("click", "tr td:nth-child(5)", function () {
-                    if (confirm("是否要刪除？")) {
-                        var tstock_id = $(this).attr('tstock_id');
+                    var tstock_id = $(this).attr('tstock_id');
+                    if (confirm("是否要刪除？" + tstock_id)) {
                         $.ajax({
                             url: "/SpringMVC/mvc/portfolio/watch/" + watch_id + "/remove/" + tstock_id,
                             type: "DELETE",
@@ -44,6 +44,7 @@
                 });
                 
                 $("#myTable2").on("click", "tr td:nth-child(5)", function () {
+                    // 判斷該 tstock_id 是否已經加入 Watch ?
                     var tstock_id = $(this).attr('tstock_id');
                     var flag = true;
                     if (watch != null && watch.tStocks != null) {
@@ -56,7 +57,6 @@
                         });
                     }
                     if (flag && confirm("是否要增加？")) {
-
                         $.ajax({
                             url: "/SpringMVC/mvc/portfolio/watch/" + watch_id + "/add/" + tstock_id,
                             type: "GET",
@@ -83,10 +83,9 @@
                     console.log(JSON.stringify(data));
                     $("#myform").find("#id").val(data.id);
                     $("#myform").find("#name").val(data.name);
-                    $("#myTable1 tbody > tr").remove();
-                    
                     watch = data; // 設定 watch 變數資料
                     
+                    $("#myTable1 tbody > tr").remove();
                     $.each(watch.tStocks, function (i, item) {
                         var html = '<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td tstock_id="{4}">{5}</td></tr>';
                         delbtn_html = '<button type="button" class="pure-button pure-button-primary">刪除</button>';
