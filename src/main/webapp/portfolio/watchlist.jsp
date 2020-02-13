@@ -10,7 +10,6 @@
 
             $(document).ready(function () {
                 watchList();
-                queryHistQuotes('^TWII');
                 // 走勢圖
                 $("#myTable").on("click", "tr td:nth-child(3)", function () {
                     var symbol = $(this).text();
@@ -81,7 +80,10 @@
         <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
         <script>
             google.charts.load('current', {packages: ['corechart']});
-
+            google.charts.setOnLoadCallback(function() {
+                queryHistQuotes('^TWII');
+            });
+            
             function queryHistQuotes(symbol) {
                 $.get("/SpringMVC/mvc/portfolio/price/histquotes/" + symbol, function (quotes, status) {
                     console.log("quotes: " + quotes);
