@@ -78,6 +78,7 @@
             function table_list(datas) {
                 $("#myTable tbody > tr").remove();
                 var profit_sum = 0;
+                var asset_sum = 0;
                 var foot_html = '<tr><td colspan="7" align="right">total</td><td nowrap="nowrap">{0}</td><td colspan="2"> </td></tr>';
                 sortJson(datas, 'id', true);
                 $.each(datas, function (i, item) {
@@ -85,6 +86,7 @@
                     var profit = 0;
                     profit = parseInt((item.tStock.price - item.cost) * item.amount)
                     profit_sum += profit;
+                    asset_sum += item.tStock.price * item.amount;
                     sellbtn_html = '<button type="button" class="pure-button pure-button-primary">賣出</button>';
                     buylbtn_html = '<button type="button" class="pure-button pure-button-primary">加碼</button>';
                     $('#myTable').append(String.format(html,
@@ -106,6 +108,7 @@
                             ));
                 });
                 $('#myTable').append(String.format(foot_html, numberFormat(profit_sum)));
+                $("#asset").text(numberFormat(asset_sum));
             }
 
         </script>
@@ -120,8 +123,8 @@
 
             <div id="main">
                 <div class="header">
-                    <h1>Asset</h1>
-                    <h2><div id="balance"></div></h2>
+                    <h1>Asset $<span id="asset">0</span></h1>
+                    <h2>Balance $<span id="balance">0</span></h2>
                 </div>
                 <table>
                     <tr>
