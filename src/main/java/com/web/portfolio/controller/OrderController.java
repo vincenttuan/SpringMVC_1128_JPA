@@ -30,9 +30,9 @@ public class OrderController {
         TStock ts = em.find(TStock.class, tstock_id);
         if(ts == null) return "TStock None";
         
-        int buyCost = (int)(ts.getPrice().doubleValue() * amount);
+        int buyTotalCost = (int)(ts.getPrice().doubleValue() * amount);
         
-        int balance = investor.getBalance() - buyCost;
+        int balance = investor.getBalance() - buyTotalCost;
         if(balance < 0) {
             return "Insufficient balance";
         }
@@ -48,6 +48,7 @@ public class OrderController {
         em.persist(investor);
         em.persist(po);
         em.flush(); // 取得最新 id
+        
         return po.getId() + "";
     }
     
