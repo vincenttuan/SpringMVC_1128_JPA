@@ -23,7 +23,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 
 public class SendEmail {
-
+    
     public static void main(String[] args) throws Exception {
         // Gmail 與 授權碼(非 Google 密碼)
         final String googleGmail = "xxx@gmail.com";
@@ -51,7 +51,7 @@ public class SendEmail {
         
         // 發文者 一定會是你的 username
         InternetAddress ia = new InternetAddress("from@gmail.com");
-        ia.setPersonal("HaHaHa");
+        ia.setPersonal("測試信件");
         message.setFrom(ia);
         
         // 受文者
@@ -61,14 +61,14 @@ public class SendEmail {
         );
         
         // Email 抬頭
-        message.setSubject("HS 測試信件");
+        message.setSubject("我的測試信件");
 
         // Email 內容純文字
         //message.setText("Dear Mail Crawler,\n\n Please do not spam my email!");
         
         // Email 內容 HTML
         String content = "Dear 顧客您好,"
-                + "<p /><a href='https://hsunite.tw/'>HS 網址</a>"
+                + "<p /><a href='https://tw.yahoo.com/'>我的網址</a>"
                 + "<p /> Please do not spam my email!";
         
         message.setContent(content, "text/html;charset=utf-8");
