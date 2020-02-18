@@ -23,8 +23,19 @@ import javax.mail.Session;
 import javax.mail.Transport;
 
 public class SendEmail {
-    
     public static void main(String[] args) throws Exception {
+        String personal = "我的投資組合"; // 發送者姓名
+        String to = "xxx@yahoo.com.tw"; // 發送給誰 ? 若有多筆", "號隔開
+        String title = "我的投資組合會員Email驗證通知"; // 信件 title
+        String html = "Dear 顧客您好,"  // 信件內容 
+                + "<p /><a href='https://tw.yahoo.com/'>Email驗證網址</a>"
+                + "<p /> Please do not spam my email!"; 
+        
+        SendEmail sendEmail = new SendEmail();
+        sendEmail.submit(personal, to, title, html);
+    }
+    
+    public void submit(String personal, String to, String title, String html) throws Exception {
         // Gmail 與 授權碼(非 Google 密碼)
         final String googleGmail = "xxx@gmail.com";
         final String googlePassword = "xxx";
@@ -51,25 +62,23 @@ public class SendEmail {
         
         // 發文者 一定會是你的 username
         InternetAddress ia = new InternetAddress("from@gmail.com");
-        ia.setPersonal("測試信件");
+        ia.setPersonal(personal);
         message.setFrom(ia);
         
         // 受文者
         message.setRecipients(
                 Message.RecipientType.TO,
-                InternetAddress.parse("vincenttuan@gmail.com, vincentjava@yahoo.com.tw")
+                InternetAddress.parse(to)
         );
         
         // Email 抬頭
-        message.setSubject("我的測試信件");
+        message.setSubject(title);
 
         // Email 內容純文字
         //message.setText("Dear Mail Crawler,\n\n Please do not spam my email!");
         
         // Email 內容 HTML
-        String content = "Dear 顧客您好,"
-                + "<p /><a href='https://tw.yahoo.com/'>我的網址</a>"
-                + "<p /> Please do not spam my email!";
+        String content = html;
         
         message.setContent(content, "text/html;charset=utf-8");
 
