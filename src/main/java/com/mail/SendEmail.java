@@ -37,8 +37,8 @@ public class SendEmail {
     
     public void submit(String personal, String to, String title, String html) throws Exception {
         // Gmail 與 授權碼(非 Google 密碼)
-        final String googleGmail = "xxx@gmail.com";
-        final String googlePassword = "xxx";
+        final String googleGmail = "xxx@gmail.com"; // 你的 Gmail
+        final String authPassword = "xxx"; // 授權碼
 
         // smpt 設定資訊
         Properties prop = new Properties();
@@ -53,14 +53,14 @@ public class SendEmail {
                 new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(googleGmail, googlePassword);
+                return new PasswordAuthentication(googleGmail, authPassword);
             }
         });
         
         // 建立 Email 實體
         Message message = new MimeMessage(session);
         
-        // 發文者 一定會是你的 username
+        // 發文者 一定會是你的 google email
         InternetAddress ia = new InternetAddress("from@gmail.com");
         ia.setPersonal(personal);
         message.setFrom(ia);
@@ -78,9 +78,7 @@ public class SendEmail {
         //message.setText("Dear Mail Crawler,\n\n Please do not spam my email!");
         
         // Email 內容 HTML
-        String content = html;
-        
-        message.setContent(content, "text/html;charset=utf-8");
+        message.setContent(html, "text/html;charset=utf-8");
 
         // 發送 email
         Transport.send(message);
